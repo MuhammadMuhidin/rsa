@@ -1,0 +1,237 @@
+<html>
+<head>
+<title>RSA</title>
+<style>
+
+body{
+padding:0 5% 0 5%;
+background-image:url("assets/bg.jpg");
+background-repeat:no-repeat;
+background-size:cover;
+}
+
+input, button,textarea{
+font-size:25px;
+padding:1%;
+margin-bottom:1%;
+border: 1px solid magenta;
+border-radius:25px;
+font-family: monospace;
+opacity:90%;
+}
+
+input{
+width:55%;
+}
+
+button{
+width:42%;
+margin-left:15px;
+color:purple;
+}
+
+textarea{
+width:100%;
+}
+
+hr{
+border:3px dashed;
+color:purple;
+width:95%;
+margin-bottom:1%;
+}
+
+label{
+font-size:30px;
+color:white;
+margin-left:15px;
+}
+
+table, tr, th, td{
+text-align:center;
+font-size:25px;
+color:white;
+border: 1px solid white;
+border-collapse:separate;
+border-radius:15px;
+}
+
+table{
+background-image:url("assets/graves.jpg");
+background-repeat:no-repeat;
+background-size:cover;
+background-attachment:fixed;
+opacity:90%;
+margin-bottom:25px;
+border-radius:25px;
+display:none;
+transition: width 2s, height 2s, transform 2s;
+}
+
+img{
+border-radius:15px;
+}
+
+.button{
+width:100%;
+margin-left:0px;
+color:purple;
+}
+
+.top{
+margin-top:1%;
+}
+
+#fadeEnc:hover, #fadeDec:hover, #createPublicKey:hover, #download:hover, .buttonStart:hover, #hapus:hover{
+animation: shake 1s;
+box-shadow:5px 5px 30px blue;
+background-color:#d0dbff;
+color:black;
+}
+
+#createPublicKey{
+background-color:#EFFF30;
+color:black;
+}
+
+.btnenc{
+background-color:green;
+color:white;
+}
+
+.btndec{
+background-color:blue;
+color:white;
+}
+
+.input:hover{
+box-shadow:5px 5px 30px blue;
+}
+
+#info2{
+display:none;
+}
+
+.buttonStart{
+width:100%;
+margin-left:0px;
+color:purple;
+background-color:skyblue;
+}
+
+#statusBits{
+color:yellow;
+}
+
+#download{
+display:none;
+}
+
+#hapus{
+background-color:red;
+color:white;
+}
+
+#thisEnc, #thisDec{
+display:none;
+}
+
+.tblbawah{
+background-image:url("assets/tblatas.jpg");
+background-repeat:no-repeat;
+background-size:100%100%;
+background-attachment:fixed;
+opacity:90%;
+margin-bottom:25px;
+border-radius:25px;
+display:none;
+}
+
+</style>
+</head>
+<script type="text/javascript" src="components/qrcode.min.js"></script>
+<body onload="welcome()">
+
+<label id="now1"></label><br>
+<label id="now2"></label><br>
+<label>Status kriptografi menggunakan</label>
+<label id="statusBits"></label><br>
+<input type="text" class="top input reset" id="passOne" placeholder="Masukan password"/>
+<button id="createPublicKey" onclick="pKey()">Kunci publik</button><br>
+<textarea class="reset" id="publicKey" placeholder="Kunci Publik" readonly></textarea>
+
+<table id="tb1" class="tblbawah">
+<tr>
+<td>Kunci publik</td>
+</tr>
+<tr>
+<td><img id="qrPkey" src=""></img></td>
+</tr>
+</table>
+<hr>
+
+<button id="fadeEnc" class="button btnenc">Encryption</button>
+<div id="thisEnc">
+<textarea class="input reset" id="plain" placeholder="Masukan pesan anda"></textarea>
+<textarea class="input reset" id="inputPublicKey" placeholder="Masukan kunci publik"></textarea>
+<textarea class="input reset" id="passSender" placeholder="Masukan tanda tangan pengirim"></textarea>
+<textarea class="reset" id="publicKeyID" placeholder="Identitas kunci publik" readonly></textarea>
+<textarea class="reset" id="enc" placeholder="Hasil encrypt" readonly></textarea>
+<button id="encBtn" class="buttonStart" onclick="enc()">Mulai</button>
+<table id="tb2">
+<tr>
+<td>Signature</td>
+<td>Encryption</td>
+</tr>
+<tr>
+<td><img id="qrID" src=""></img></td>
+<td><img id="qrEnc" src=""></img></td>
+</tr>
+</table>
+</div>
+<hr>
+<button id="fadeDec" class="button btndec">Decryption</button>
+<div id="thisDec">
+<textarea class="input reset" id="inputKey" placeholder="Masukan password penerima"></textarea>
+<textarea class="input reset" id="enc2" placeholder="Masukan data encrypt"></textarea>
+<textarea class="reset" id="verifingPublicKeyID" placeholder="Verifikasi identitas kunci publik" readonly>
+</textarea>
+<textarea class="reset" id="sign" placeholder="Status keaslian data" readonly>
+</textarea>
+<textarea class="reset" id="dec" placeholder="Hasil decrypt" readonly></textarea>
+<button id="decBtn" class="buttonStart" onclick="dec()">Mulai</button>
+<table id="tb3">
+<tr>
+<td>Decryption</td>
+</tr>
+<tr>
+<td><img id="qrDec" src=""></img></td>
+</tr>
+</table>
+</div>
+<hr>
+<button class="button" id="download" onclick="download()">Download</button>
+<input type="file" onchange="bg(this)"></input> 
+<button onclick="reset()" id="hapus">Hapus semua</button>
+
+<audio id="success">
+  <source src="assets/ting.aac" type="audio/aac">
+</audio>
+<audio id="warning">
+  <source src="assets/warning.ogg" type="audio/ogg">
+</audio>
+
+<div id="info1">
+<label>Anda belum mengirim email ke siapapun.</label></div>
+<div id="info2">
+<label>Alamat email terakhir : </label> <label id="email"></label></div>
+
+<div id="infinite"></div>
+<div id="infinite2"></div>
+<script language="javascript" type="text/javascript" src="components/cryptico.min.js"></script>
+<script language="javascript" type="text/javascript" src="components/jquery.3.4.1.min.js"></script>
+<script language="javascript" type="text/javascript" src="components/jspdf.min.js"></script>
+<script language="javascript" type="text/javascript" src="components/smtp.min.js"></script>
+<script language="javascript" type="text/javascript" src="index.js"></script>
+</body>
+</html>
