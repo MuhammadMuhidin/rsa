@@ -174,9 +174,9 @@ display:none;
 
 <button id="##fadeEnc" class="button btnenc">Encryption</button>
 <div id="##thisEnc">
-<textarea class="input reset" id="plain" placeholder="Masukan pesan anda"></textarea>
-<textarea class="input reset" id="inputPublicKey" placeholder="Masukan kunci publik"></textarea>
-<textarea class="input reset" id="passSender" placeholder="Masukan tanda tangan pengirim"></textarea>
+<textarea class="top input reset" id="plain" placeholder="Masukan pesan anda"></textarea>
+<textarea class="top input reset" id="inputPublicKey" placeholder="Masukan kunci publik"></textarea>
+<textarea class="top input reset" id="passSender" placeholder="Masukan tanda tangan pengirim"></textarea>
 <textarea class="reset" id="publicKeyID" placeholder="Identitas kunci publik" readonly></textarea>
 <textarea class="reset" id="enc" placeholder="Hasil encrypt" readonly></textarea>
 <button id="encBtn" class="buttonStart" onclick="enc()">Mulai Encryption</button>
@@ -194,13 +194,13 @@ display:none;
 <hr>
 <button id="##fadeDec" class="button btndec">Decryption</button>
 <div id="##thisDec">
-<textarea class="input reset" id="inputKey" placeholder="Masukan password penerima"></textarea>
-<textarea class="input reset" id="enc2" placeholder="Masukan data encrypt"></textarea>
-<textarea class="reset" id="verifingPublicKeyID" placeholder="Verifikasi identitas kunci publik" readonly>
+<textarea class="top input reset" id="inputKey" placeholder="Masukan password penerima"></textarea>
+<textarea class="top input reset" id="enc2" placeholder="Masukan data encrypt"></textarea>
+<textarea class="top input reset" id="verifingPublicKeyID" placeholder="Verifikasi identitas kunci publik" readonly>
 </textarea>
-<textarea class="reset" id="sign" placeholder="Status keaslian data" readonly>
+<textarea class="top input reset" id="sign" placeholder="Status keaslian data" readonly>
 </textarea>
-<textarea class="reset" id="dec" placeholder="Hasil decrypt" readonly></textarea>
+<textarea class="top input reset" id="dec" placeholder="Hasil decrypt" readonly></textarea>
 <button id="decBtn" class="buttonStart" onclick="dec()">Mulai Decryption</button>
 <!--
 <table id="tb3">
