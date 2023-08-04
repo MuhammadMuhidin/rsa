@@ -160,15 +160,15 @@ display:none;
 <input type="text" class="top input reset" id="passOne" placeholder="Masukan password"/>
 <button id="createPublicKey" onclick="pKey()">Kunci publik</button><br>
 <textarea class="reset" id="publicKey" placeholder="Kunci Publik" readonly></textarea>
-
+<!--
 <table id="tb1" class="tblbawah">
 <tr>
 <td>Kunci publik</td>
 </tr>
-/*<tr>
+<tr>
 <td><img id="qrPkey" src=""></img></td>
-</tr>*/
-</table>
+</tr>
+</table> -->
 <hr>
 
 <button id="##fadeEnc" class="button btnenc">Encryption</button>
@@ -179,7 +179,7 @@ display:none;
 <textarea class="reset" id="publicKeyID" placeholder="Identitas kunci publik" readonly></textarea>
 <textarea class="reset" id="enc" placeholder="Hasil encrypt" readonly></textarea>
 <button id="encBtn" class="buttonStart" onclick="enc()">Mulai Encryption</button>
-<table id="tb2">
+<!--<table id="tb2">
 <tr>
 <td>Signature</td>
 <td>Encryption</td>
@@ -188,7 +188,7 @@ display:none;
 <td><img id="qrID" src=""></img></td>
 <td><img id="qrEnc" src=""></img></td>
 </tr>
-</table>
+</table> -->
 </div>
 <hr>
 <button id="##fadeDec" class="button btndec">Decryption</button>
@@ -201,6 +201,7 @@ display:none;
 </textarea>
 <textarea class="reset" id="dec" placeholder="Hasil decrypt" readonly></textarea>
 <button id="decBtn" class="buttonStart" onclick="dec()">Mulai Decryption</button>
+<!--
 <table id="tb3">
 <tr>
 <td>Decryption</td>
@@ -209,9 +210,12 @@ display:none;
 <td><img id="qrDec" src=""></img></td>
 </tr>
 </table>
+-->
 </div>
 <hr>
+<!--
 <button class="button" id="download" onclick="download()">Download</button>
+-->
 <input type="file" onchange="bg(this)"></input> 
 <button onclick="reset()" id="hapus">Hapus semua</button>
 
